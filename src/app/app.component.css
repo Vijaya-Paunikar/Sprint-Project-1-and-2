@@ -1,0 +1,50 @@
+/* styles.css or styles.scss */
+
+.bg-cloud-dark {
+  background-color: #000036; /* Dark shade of cloud technology color */
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right:140px;
+}
+
+.navbar {
+  padding: 15px;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-nav .nav-link {
+  color: #fff;
+  margin-right: 15px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ecf0f1; /* Hover color */
+}
+
+main {
+  padding-top: 20px;
+    padding-bottom: 20px;
+    height: 435px;/* Ensure padding is included in the width */
+}
+  
+  footer {
+    background-color:#000036; /* Dark background color for the footer */
+    color: #fff; /* White text color for the footer */
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    height: 40px;
+    font-size: 10px;
+  }
+  

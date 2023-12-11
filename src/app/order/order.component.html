@@ -1,0 +1,62 @@
+<div class="container-fluid" style="background-image:url('assets/back.webp')">
+    <div class="container mt-4">
+      <!-- Display the button at the top -->
+      <button class="btn btn-light mb-3" (click)="createOrder()" style="margin-top: 20px; color:black">Create Order</button>
+  
+      <!-- Display the table with orders -->
+      <div class="user-list-container">
+        <h2 class="text-center" style="margin-top: -30px; color: white">Orders Details</h2>
+        <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Total Amount</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders" class="table-info">
+              <td>{{ order.date }}</td>
+              <td>{{ order.totalAmount }}</td>
+              <td>
+                <button class="btn btn-warning" (click)="editOrder(order)">Edit</button>&nbsp;
+                <button class="btn btn-danger" (click)="deleteOrder(order.orderId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Bootstrap Modal for Order Form -->
+      <div class="modal" id="orderModal" tabindex="-1" role="dialog" style="margin-top: 30px;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="background-color: lightblue;">
+            <div class="modal-header bg-info text-center">
+              <h5 class="modal-title">{{ isNewOrder ? 'Create Order' : 'Edit Order' }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelEdit()" style="background-color: rgb(192, 190, 190);">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+  
+                <div class="form-group" style="margin-top: 10px;">
+                  <label for="date"><b>Date:</b></label>
+                  <input type="date" class="form-control" [(ngModel)]="selectedOrder.date" name="date" />
+                </div>
+  
+                <div class="form-group" style="margin-top: 10px;">
+                  <label for="totalAmount"><b>Total Amount:</b></label>
+                  <input type="text" class="form-control" [(ngModel)]="selectedOrder.totalAmount" name="totalAmount" />
+                </div>
+                <br>
+                <button class="btn btn-success" (click)="saveOrder()">{{ isNewOrder ? 'Create' : 'Update' }} Order</button>&nbsp;
+                <button class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

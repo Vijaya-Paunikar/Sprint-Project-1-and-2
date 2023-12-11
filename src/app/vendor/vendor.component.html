@@ -1,0 +1,67 @@
+<div class="container-fluid" style="background-image:url('assets/back.webp')">
+<div class="container mt-4">
+  <!-- Display the button at the top -->
+  <button class="btn btn-light mb-3" (click)="createVendor()" style="margin-top: 20px; color:black">Create Vendor</button>
+
+  <!-- Display the table with vendors -->
+  <div class="user-list-container">
+    <h2 class="text-center" style="margin-top: -30px; color: white">Vendors Details</h2>
+    <table class="table table-bordered table-striped table-hover" style="margin-top: 20px;">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Vendor Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vendor of vendors" class="table-info">
+          <td>{{ vendor.vendorName }}</td>
+          <td>{{ vendor.description }}</td>
+          <td>{{ vendor.contact }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="editVendor(vendor)">Edit</button>&nbsp;
+            <button class="btn btn-danger" (click)="deleteVendor(vendor.vendorID)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap Modal for Vendor Form -->
+  <div class="modal" id="vendorModal" tabindex="-1" role="dialog" style="margin-top: 30px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color:lightblue">
+        <div class="modal-header bg-info text-center">
+          <h5 class="modal-title" >{{ isNewVendor ? 'Create Vendor' : 'Edit Vendor' }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelEdit()" style="background-color: rgb(192, 190, 190);">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group" style="margin-top: 10px;">
+              <label for="vendorName"><b>Vendor Name:</b></label>
+              <input type="text" class="form-control" [(ngModel)]="selectedVendor.vendorName" name="vendorName" />
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+              <label for="description"><b>Description:</b></label>
+              <input type="text" class="form-control" [(ngModel)]="selectedVendor.description" name="description" />
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+              <label for="contact"><b>Contact No.:</b></label>
+              <input type="text" class="form-control" [(ngModel)]="selectedVendor.contact" name="contact" />
+            </div>
+            <br>
+            <button class="btn btn-success" (click)="saveVendor()">Save</button>&nbsp;
+            <button class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
